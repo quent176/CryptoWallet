@@ -1,6 +1,7 @@
 package fr.wcs.cryptowallet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,9 +52,22 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
             mShortNameCoin = itemView.findViewById(R.id.coin_shortname_list);
             mLongNameCoin = itemView.findViewById(R.id.coin_longname_list);
             mPriceCoin = itemView.findViewById(R.id.coin_price_list);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    CoinListModel selectedCoin = (CoinListModel) mItem.get(position);
+                    Intent i = new Intent(mContext,DetailsCoinActivity.class);
+                    i.putExtra("ThisCoin",selectedCoin);
+                    mContext.startActivity(i);
+                }
+            });
+
         }
 
         public void display(CoinListModel coinListModel) {
+
             mShortNameCoin.setText(coinListModel.getShortNameCoin());
             mLongNameCoin.setText(coinListModel.getLongNameCoin());
             mPriceCoin.setText(coinListModel.getActualValueCoin());

@@ -1,6 +1,9 @@
 package fr.wcs.cryptowallet;
 
-public class CoinListModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class CoinListModel implements Parcelable {
 
     private String shortNameCoin;
     private String longNameCoin;
@@ -50,4 +53,37 @@ public class CoinListModel {
         this.photoURLCoin = photoURLCoin;
     }
 
+
+    protected CoinListModel(Parcel in) {
+        shortNameCoin = in.readString();
+        longNameCoin = in.readString();
+        actualValueCoin = in.readString();
+        photoURLCoin = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(shortNameCoin);
+        dest.writeString(longNameCoin);
+        dest.writeString(actualValueCoin);
+        dest.writeString(photoURLCoin);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<CoinListModel> CREATOR = new Parcelable.Creator<CoinListModel>() {
+        @Override
+        public CoinListModel createFromParcel(Parcel in) {
+            return new CoinListModel(in);
+        }
+
+        @Override
+        public CoinListModel[] newArray(int size) {
+            return new CoinListModel[size];
+        }
+    };
 }
