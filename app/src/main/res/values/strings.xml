@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CryptoWallet</string>
+    <string name="button_see_list_crypto">Voir les Cryptos</string>
 </resources>
