@@ -32,26 +32,31 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         return mItem.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mShortNameCoin, mLongNameCoin, mValueCoin;
+        TextView mShortNameCoin, mLongNameCoin, mPriceCoin;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             mShortNameCoin = itemView.findViewById(R.id.coin_shortname_list);
             mLongNameCoin = itemView.findViewById(R.id.coin_longname_list);
-            mValueCoin = itemView.findViewById(R.id.coin_price_list);
+            mPriceCoin = itemView.findViewById(R.id.coin_price_list);
         }
 
         public void display(CoinListModel coinListModel) {
             mShortNameCoin.setText(coinListModel.getShortNameCoin());
             mLongNameCoin.setText(coinListModel.getLongNameCoin());
-            mValueCoin.setText(coinListModel.getActualValueCoin());
+            mPriceCoin.setText(coinListModel.getActualValueCoin());
         }
     }
 }
