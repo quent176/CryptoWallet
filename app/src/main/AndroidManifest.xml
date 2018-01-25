@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".DetailsCoinActivity">
         </activity>
+        <activity android:name=".JsonActivity">
+        </activity>
     </application>
 
 </manifest>
