@@ -50,17 +50,14 @@ public class ListCoinActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                try {
-                    //JSONArray businessesJson = response.getJSONArray();
-                    // Now we have an array of business objects
-                    // Might now create an adapter BusinessArrayAdapter<Business> to load the businesses into a list
-                    // You might also simply update the data in an existing array and then notify the adapter
-                    ListCoinsMarket.clear(); // clear existing items if needed
-                    ListCoinsMarket.addAll(CoinJsonModel.fromJson(listCoinJson)); // add new items
-                    mListCoinAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                //JSONArray businessesJson = response.getJSONArray();
+                // Now we have an array of business objects
+                // Might now create an adapter BusinessArrayAdapter<Business> to load the businesses into a list
+                // You might also simply update the data in an existing array and then notify the adapter
+                ListCoinsMarket.clear(); // clear existing items if needed
+                ListCoinsMarket.addAll(CoinJsonModel.fromJson(response)); // add new items
+                mListCoinAdapter.updatelist(ListCoinsMarket);
+                mListCoinAdapter.notifyDataSetChanged();
 
             }
         }, new Response.ErrorListener() {
