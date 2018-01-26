@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DetailsCoinActivity extends AppCompatActivity {
@@ -42,6 +43,15 @@ public class DetailsCoinActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                     Log.d("nickname", response.toString());
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                Log.d("CACA", "onResponse: " + object.toString(2));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
 
             }
         }, new Response.ErrorListener() {

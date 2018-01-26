@@ -13,9 +13,9 @@ import java.util.List;
 public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<CoinListModel> mItem;
+    private List<CoinJsonModel> mItem;
 
-    public ListCoinAdapter (List<CoinListModel> item, Context context){
+    public ListCoinAdapter (List<CoinJsonModel> item, Context context){
         this.mItem = item;
         this.mContext = context;
     }
@@ -57,7 +57,7 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    CoinListModel selectedCoin = (CoinListModel) mItem.get(position);
+                    CoinJsonModel selectedCoin = (CoinJsonModel) mItem.get(position);
                     Intent i = new Intent(mContext,DetailsCoinActivity.class);
                     i.putExtra("ThisCoin",selectedCoin);
                     mContext.startActivity(i);
@@ -66,11 +66,11 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
 
         }
 
-        public void display(CoinListModel coinListModel) {
+        public void display(CoinJsonModel coinJsonModel) {
 
-            mShortNameCoin.setText(coinListModel.getShortNameCoin());
-            mLongNameCoin.setText(coinListModel.getLongNameCoin());
-            mPriceCoin.setText(coinListModel.getActualValueCoin());
+            mShortNameCoin.setText(coinJsonModel.getSymbol());
+            mLongNameCoin.setText(coinJsonModel.getName());
+            mPriceCoin.setText(coinJsonModel.getPrice_usd());
         }
     }
 }
