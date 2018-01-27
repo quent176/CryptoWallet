@@ -11,12 +11,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +23,7 @@ public class ListCoinActivity extends AppCompatActivity {
    // List<CoinJsonModel> mCoinListModelList = new ArrayList<>();
     String url = "https://api.coinmarketcap.com/v1/ticker/";
     ListCoinAdapter mListCoinAdapter;
-    List<CoinJsonModel> ListCoinsMarket = new ArrayList<>();
+    List<CoinJsonModel> mListCoinsMarket = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +34,9 @@ public class ListCoinActivity extends AppCompatActivity {
         // mCoinListModelList.add(new CoinListModel("btc","bitcoin","134,23","empty"));
 
         RecyclerView recyclerView = findViewById(R.id.recycler_list);
-        mListCoinAdapter = new ListCoinAdapter(ListCoinsMarket, this);
+        mListCoinAdapter = new ListCoinAdapter(mListCoinsMarket, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ListCoinAdapter(ListCoinsMarket, this));
+        recyclerView.setAdapter(mListCoinAdapter);
 
         fillRecycler();
     }
@@ -54,9 +51,8 @@ public class ListCoinActivity extends AppCompatActivity {
                 // Now we have an array of business objects
                 // Might now create an adapter BusinessArrayAdapter<Business> to load the businesses into a list
                 // You might also simply update the data in an existing array and then notify the adapter
-                ListCoinsMarket.clear(); // clear existing items if needed
-                ListCoinsMarket.addAll(CoinJsonModel.fromJson(response)); // add new items
-                mListCoinAdapter.updatelist(ListCoinsMarket);
+                mListCoinsMarket.clear(); // clear existing items if needed
+                mListCoinsMarket.addAll(CoinJsonModel.fromJson(response)); // add new items
                 mListCoinAdapter.notifyDataSetChanged();
 
             }

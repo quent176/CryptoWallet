@@ -74,8 +74,4 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
             mPriceCoin.setText(coinJsonModel.getPrice_usd());
         }
     }
-
-    public void updatelist(List<CoinJsonModel> list){
-        mItem = list;
-    }
 }

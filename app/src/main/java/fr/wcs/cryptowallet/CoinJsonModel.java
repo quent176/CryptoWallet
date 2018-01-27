@@ -217,7 +217,7 @@ public class CoinJsonModel implements Parcelable {
 
     public static ArrayList<CoinJsonModel> fromJson(JSONArray jsonArray) {
         JSONObject CoinMarketJson;
-        ArrayList<CoinJsonModel> ListCoins = new ArrayList<CoinJsonModel>(jsonArray.length());
+        ArrayList<CoinJsonModel> listCoins = new ArrayList<CoinJsonModel>(jsonArray.length());
         // Process each result in json array, decode and convert to business object
         for (int i=0; i < jsonArray.length(); i++) {
             try {
@@ -229,11 +229,11 @@ public class CoinJsonModel implements Parcelable {
 
             CoinJsonModel coinJsonModel = CoinJsonModel.fromJson(CoinMarketJson);
             if (coinJsonModel != null) {
-                ListCoins.add(coinJsonModel);
+                listCoins.add(coinJsonModel);
             }
         }
 
-        return ListCoins;
+        return listCoins;
     }
 
     protected CoinJsonModel(Parcel in) {
