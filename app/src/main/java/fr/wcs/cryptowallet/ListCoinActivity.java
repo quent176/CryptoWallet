@@ -30,39 +30,24 @@ public class ListCoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_coin);
 
-       // mCoinListModelList.add(new CoinListModel("btc","bitcoin","134,23","empty"));
-        // mCoinListModelList.add(new CoinListModel("btc","bitcoin","134,23","empty"));
-
         RecyclerView recyclerView = findViewById(R.id.recycler_list);
         mListCoinAdapter = new ListCoinAdapter(mListCoinsMarket, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mListCoinAdapter);
 
-        fillRecycler();
-    }
-
-    public void fillRecycler(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        // Initialize a new JsonArrayRequest instance
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
+        JsonActivity appel = new JsonActivity(getApplicationContext());
+        appel.fillRecycler(new JsonActivity.JsonListener() {
             @Override
-            public void onResponse(JSONArray response) {
-                //JSONArray businessesJson = response.getJSONArray();
-                // Now we have an array of business objects
-                // Might now create an adapter BusinessArrayAdapter<Business> to load the businesses into a list
-                // You might also simply update the data in an existing array and then notify the adapter
+            public void onResult(List<CoinJsonModel> coinJsonModelList) {
                 mListCoinsMarket.clear(); // clear existing items if needed
-                mListCoinsMarket.addAll(CoinJsonModel.fromJson(response)); // add new items
+                mListCoinsMarket.addAll(coinJsonModelList); // add new items
                 mListCoinAdapter.notifyDataSetChanged();
-
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("LOG", error.toString());
+            public void onError() {
+
             }
         });
-        requestQueue.add(jsonArrayRequest);
     }
-
 }
