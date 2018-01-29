@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyViewHolder> {
@@ -45,14 +44,16 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mShortNameCoin, mLongNameCoin, mPriceCoin;
+        TextView mRankCoin, mShortNameCoin, mLongNameCoin, mPriceCoin, mChange1hCoin;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            mRankCoin = itemView.findViewById(R.id.coin_rank_list);
             mShortNameCoin = itemView.findViewById(R.id.coin_shortname_list);
             mLongNameCoin = itemView.findViewById(R.id.coin_longname_list);
             mPriceCoin = itemView.findViewById(R.id.coin_price_list);
+            mChange1hCoin = itemView.findViewById(R.id.coin_change1h_list);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,9 +70,11 @@ public class ListCoinAdapter extends RecyclerView.Adapter<ListCoinAdapter.MyView
 
         public void display(CoinJsonModel coinJsonModel) {
 
+            mRankCoin.setText(coinJsonModel.getRank());
             mShortNameCoin.setText(coinJsonModel.getSymbol());
             mLongNameCoin.setText(coinJsonModel.getName());
             mPriceCoin.setText(coinJsonModel.getPrice_usd());
+            mChange1hCoin.setText(coinJsonModel.getPercent_change_1h());
         }
     }
 }

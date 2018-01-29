@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 public class DetailsCoinActivity extends AppCompatActivity {
 
-    TextView mShortNameCoin, mLongNameCoin, mPriceCoin;
+    TextView mShortNameCoin, mLongNameCoin, mPriceCoin, mRankCoin, mChange1hCoin;
     CoinJsonModel mCoinJsonModel;
 
     @Override

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">CryptoWallet</string>
     <string name="button_see_list_crypto">Voir les Cryptos</string>
+    <string name="rank">Rang</string>
+    <string name="shortname_coin">ID</string>
+    <string name="longname_coin">Nom</string>
+    <string name="price_coin">Prix</string>
+    <string name="change_1h">Change 1h</string>
 </resources>
