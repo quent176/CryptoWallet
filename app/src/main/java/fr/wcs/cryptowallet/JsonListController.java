@@ -1,8 +1,6 @@
 package fr.wcs.cryptowallet;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -10,27 +8,25 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.List;
 
-public class JsonActivity {
+public class JsonListController {
 
-    String url = "https://api.coinmarketcap.com/v1/ticker/";
-    Context mContext;
+    private String mUrl = "https://api.coinmarketcap.com/v1/ticker/";
+    private Context mContext;
 
-    public JsonActivity (Context context) {
+    public JsonListController(Context context) {
         this.mContext = context;
     }
 
     public void fillRecycler(final JsonListener jsonListener){
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         // Initialize a new JsonArrayRequest instance
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, mUrl,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 //JSONArray businessesJson = response.getJSONArray();

@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".DetailsCoinActivity">
         </activity>
-        <activity android:name=".JsonActivity">
+        <activity android:name=".JsonListController">
         </activity>
     </application>
 
