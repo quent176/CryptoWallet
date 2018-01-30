@@ -35,8 +35,8 @@ public class ListCoinActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mListCoinAdapter);
 
-        JsonActivity appel = new JsonActivity(getApplicationContext());
-        appel.fillRecycler(new JsonActivity.JsonListener() {
+        JsonActivity jsonActivity = new JsonActivity(getApplicationContext());
+        jsonActivity.fillRecycler(new JsonActivity.JsonListener() {
             @Override
             public void onResult(List<CoinJsonModel> coinJsonModelList) {
                 mListCoinsMarket.clear(); // clear existing items if needed
